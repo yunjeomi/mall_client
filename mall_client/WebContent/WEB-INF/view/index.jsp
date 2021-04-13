@@ -8,6 +8,7 @@
 <title>index</title>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include>
 	<!-- 메뉴 1-->
 	<!-- 메뉴 2 -->
 	<h1>index</h1>
@@ -26,7 +27,7 @@
 			<td>
 				<div><img src="<%=request.getContextPath()%>/img/default.jpg"></div>
 				<div><a href="#"><%=ebook.getEbookTitle() %></a></div>
-				<div>\<%=ebook.getEbookPrice() %></div>
+				<div><%=ebook.getEbookPrice() %></div>
 			</td>
 <%
 			if(i%5==0){	//5번째 출력 후 다음 줄로 넘어가기
