@@ -31,5 +31,6 @@
 			<td><a href="">변경</a></td>
 		</tr>
 	</table>
+	<a href="">회원탈퇴</a>
 </body>
 </html>
