@@ -18,23 +18,28 @@ public class DBUtil {
 	//2.db자원(connection, statement, resultset) 해제 - 역순해제 
 	//garbage collector가 지우기 전에 먼저 지울 것
 	//db 연결자 수는 한정되어 있는데, db 사용 후 아직 남아있으면 
+	//null이면 nullPointException. null 아닐 때 메소드 실행 가능하도록.
 	public void close(Connection conn, PreparedStatement stmt, ResultSet rs) {
-		try {
-			rs.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(rs != null) {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		try {
-			stmt.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(rs != null) {
+			try {
+				stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		try {
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(rs != null) {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
