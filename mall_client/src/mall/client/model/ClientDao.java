@@ -69,7 +69,7 @@ public class ClientDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT client_mail clientMail FROM client WHERE client_mail=? AND client_pw=PASSWORD(?)";
+			String sql = "SELECT client_mail clientMail, client_date clientDate FROM client WHERE client_mail=? AND client_pw=PASSWORD(?)";
 			conn = this.dbUtil.getConnection();
 			stmt = conn.prepareStatement(sql); 
 			stmt.setString(1, client.getClientMail());
@@ -79,6 +79,7 @@ public class ClientDao {
 			if(rs.next()) {
 				returnClient = new Client();
 				returnClient.setClientMail(rs.getString("clientMail"));
+				returnClient.setClientDate(rs.getString("clientDate"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

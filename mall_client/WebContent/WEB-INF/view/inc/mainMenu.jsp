@@ -34,8 +34,8 @@ if(session.getAttribute("loginClient")==null){
 		</div>
 		<ul>
 			<!-- ClientOneController -> ClientDao.clientOne() - /view/client/clientOne.jsp -->
-			<li><a href="<%=request.getContextPath()%>/CartListController">회원정보</a></li>
-			<li><a href="<%=request.getContextPath()%>/ClientOneController">카트</a></li>
+			<li><a href="<%=request.getContextPath()%>/ClientOneController">회원정보</a></li>
+			<li><a href="<%=request.getContextPath()%>/CartListController">카트</a></li>
 			<li><a href="<%=request.getContextPath()%>/LogoutController">로그아웃</a></li>
 		</ul>
 	</div>
