@@ -9,6 +9,33 @@ import mall.client.vo.*;
 public class CartDao {
 	private DBUtil dbUtil;
 	
+	//카트에 책 추가하는 메소드
+	public void insertCart(Cart cart) {
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			//where절 먼저 사용하고 출력 순서 정하기!!
+			String sql = "INSERT INTO cart(client_mail, ebook_no, cart_date) VALUES(?, ?, now())";
+			
+			conn = this.dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, cart.getClientMail());
+			stmt.setInt(2, cart.getEbookNo());
+			System.out.println("insertCart stmt-> "+stmt);
+			stmt.executeUpdate();
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, null);
+		}
+		
+		return;
+	}
+	
+	//카트리스트 출력 메소드
 	public List<Map<String, Object>> cartList(String clientMail){	//들어오는 값은 이것저것 다 가능. map은 키 값, 키 값, 키 값으로
 		
 		/* 쿼리 +)ebook가격
