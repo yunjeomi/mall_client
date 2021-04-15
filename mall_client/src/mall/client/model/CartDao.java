@@ -9,7 +9,31 @@ import mall.client.vo.*;
 public class CartDao {
 	private DBUtil dbUtil;
 	
-	//이북 중복 추가 방지 메소드
+	//회원탈퇴 시, cartDB에 남아있는 정보 다 지우는 메소드
+	public void deleteCartByRemovedClient(Client client) {
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			String sql = "DELETE FROM cart WHERE client_mail=?";
+			
+			conn = this.dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, client.getClientMail());
+			System.out.println("deleteCartByRemovedClient stmt-> "+stmt);
+			stmt.executeUpdate();
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, null);
+		}
+		
+		return;
+	}
+	
+	//ebook 장바구니추가 중복 방지 메소드
 	public boolean checkEbookInCart(Cart cart) {
 		//중복이면 false, 중복아니면 true 
 		boolean flag = true;

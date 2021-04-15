@@ -10,6 +10,60 @@ import mall.client.vo.Client;
 public class ClientDao {
 	private DBUtil dbUtil;
 	
+	//고객정보 삭제 메소드
+	public int deleteClient(Client client) {
+		int delCnt = 0;
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			String sql = "DELETE FROM client WHERE client_mail=(?) AND client_pw=PASSWORD(?)";
+			
+			conn = this.dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, client.getClientMail());
+			stmt.setString(2, client.getClientPw());
+			System.out.println("deleteClient stmt-> "+stmt);
+			
+			delCnt = stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, null);
+		}
+		
+		return delCnt;
+	}
+	
+	//비밀번호 변경 메소드
+	public void updateClientPw(Client client) {
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			String sql = "UPDATE client SET client_pw=PASSWORD(?) WHERE client_mail=?";
+			
+			conn = this.dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, client.getClientPw());
+			stmt.setString(2, client.getClientMail());
+			System.out.println("updateClientPw stmt-> "+stmt);
+			
+			stmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, null);
+		}
+		
+		return;
+	}
+	
+	
 	//회원가입 메소드
 	public void insertClient(Client client) {
 		this.dbUtil = new DBUtil();
@@ -69,7 +123,7 @@ public class ClientDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT client_mail clientMail, client_date clientDate FROM client WHERE client_mail=? AND client_pw=PASSWORD(?)";
+			String sql = "SELECT client_mail clientMail, client_date clientDate, client_pw clientPw FROM client WHERE client_mail=? AND client_pw=PASSWORD(?)";
 			conn = this.dbUtil.getConnection();
 			stmt = conn.prepareStatement(sql); 
 			stmt.setString(1, client.getClientMail());
@@ -80,6 +134,7 @@ public class ClientDao {
 				returnClient = new Client();
 				returnClient.setClientMail(rs.getString("clientMail"));
 				returnClient.setClientDate(rs.getString("clientDate"));
+				returnClient.setClientPw(rs.getString("clientPw"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
