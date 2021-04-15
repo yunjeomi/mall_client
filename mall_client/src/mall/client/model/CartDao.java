@@ -9,6 +9,38 @@ import mall.client.vo.*;
 public class CartDao {
 	private DBUtil dbUtil;
 	
+	//이북 중복 추가 방지 메소드
+	public boolean checkEbookInCart(Cart cart) {
+		//중복이면 false, 중복아니면 true 
+		boolean flag = true;
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM cart WHERE client_mail=? AND ebook_no=?";
+			
+			conn = this.dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, cart.getClientMail());
+			stmt.setInt(2, cart.getEbookNo());
+			System.out.println(" stmt-> "+stmt);
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = false;	//값이 있으면, 즉 중복이면 false
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, rs);
+		}
+		
+		return flag;
+	}
+	
 	//카트에 책 추가하는 메소드
 	public void insertCart(Cart cart) {
 		this.dbUtil = new DBUtil();
@@ -16,7 +48,6 @@ public class CartDao {
 		PreparedStatement stmt = null;
 		
 		try {
-			//where절 먼저 사용하고 출력 순서 정하기!!
 			String sql = "INSERT INTO cart(client_mail, ebook_no, cart_date) VALUES(?, ?, now())";
 			
 			conn = this.dbUtil.getConnection();
