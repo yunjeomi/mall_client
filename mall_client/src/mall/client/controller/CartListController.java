@@ -23,7 +23,7 @@ public class CartListController extends HttpServlet {
 		//로그인 아니면 redirect
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginClient") == null) {
-			response.sendRedirect(request.getContextPath()+"/WEB-INF/view/index.jsp");
+			response.sendRedirect(request.getContextPath()+"/IndexController");
 			return;
 		}
 		
@@ -35,6 +35,7 @@ public class CartListController extends HttpServlet {
 		this.cartDao = new CartDao();
 		List<Map<String, Object>> cartList = this.cartDao.cartList(clientMail);
 		System.out.println("cartList-> "+cartList);
+		System.out.println();
 		
 		
 		//forward

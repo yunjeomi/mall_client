@@ -40,11 +40,12 @@ public class LoginController extends HttpServlet {
 		//로그인 메소드 실행
 		this.clientDao = new ClientDao();
 		Client returnClient = this.clientDao.login(client);
-		System.out.println("*로그인 완료*");
 		
 		//로그인 정보 입력 시 세션에 정보를 넣어준다.
 		if(returnClient != null) {
 			session.setAttribute("loginClient", returnClient);
+			System.out.println("*로그인 완료*");
+			System.out.println("");
 		}
 		response.sendRedirect(request.getContextPath()+"/IndexController");
 	}

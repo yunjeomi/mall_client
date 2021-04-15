@@ -20,7 +20,7 @@ public class InsertCartController extends HttpServlet {
 		//로그인 정보 확인
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginClient")==null) {
-			response.sendRedirect("/IndexController");
+			response.sendRedirect(request.getContextPath()+"/IndexController");
 			return;
 		}
 		
@@ -31,10 +31,6 @@ public class InsertCartController extends HttpServlet {
 		Cart cart = new Cart();
 		cart.setEbookNo(ebookNo);
 		cart.setClientMail(((Client)session.getAttribute("loginClient")).getClientMail());
-		
-		
-		
-		
 		
 		//Dao실행
 		this.cartDao = new CartDao();
@@ -51,6 +47,7 @@ public class InsertCartController extends HttpServlet {
 		
 		this.cartDao.insertCart(cart);
 		System.out.println("*ebook 장바구니 추가 완료*");
+		System.out.println();
 		
 		//장바구니에 추가했으니 장바구니로 이동해라. CartListController
 		response.sendRedirect(request.getContextPath()+"/CartListController");

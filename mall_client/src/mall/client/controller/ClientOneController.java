@@ -20,13 +20,14 @@ public class ClientOneController extends HttpServlet {
 		//로그인 안 되어있을 경우 강제 이동
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginClient") == null) {
-			response.sendRedirect(request.getContextPath()+"/WEB-INF/view/index.jsp");
+			response.sendRedirect(request.getContextPath()+"/IndexController");
 			return;
 		}
 		
 		//세션값 가져오기
 		Client client = (Client)session.getAttribute("loginClient");
 		System.out.println("client정보-> "+client);
+		System.out.println();
 		
 		//값 넣어주기
 		request.setAttribute("clientOne", client);

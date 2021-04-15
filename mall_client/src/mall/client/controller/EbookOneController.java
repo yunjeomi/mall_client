@@ -23,6 +23,7 @@ public class EbookOneController extends HttpServlet {
 		this.ebookDao = new EbookDao();
 		Ebook ebook = this.ebookDao.ebookOne(ebookNo);
 		System.out.println("*ebookOne출력 완료*");
+		System.out.println();
 		
 		//view forward
 		request.setAttribute("ebookOne", ebook);

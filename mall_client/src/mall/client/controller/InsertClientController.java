@@ -23,7 +23,7 @@ public class InsertClientController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginClient") != null) {	//로그인 되어 있을 경우에
-			response.sendRedirect("/IndexController");		//인덱스로 넘어가라
+			response.sendRedirect(request.getContextPath()+"/IndexController");		//인덱스로 넘어가라
 			return;
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/client/insertClient.jsp");
@@ -61,6 +61,7 @@ public class InsertClientController extends HttpServlet {
 		//회원가입 메소드 실행
 		this.clientDao.insertClient(client);
 		System.out.println("*회원가입 완료*");
+		System.out.println();
 		
 		//회원가입 후 로그인 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/IndexController");

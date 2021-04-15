@@ -28,9 +28,12 @@
 		</tr>
 		<tr>
 			<td>clientPw</td>
-			<td><a href="">변경</a></td>
+			<!-- UpdateClientPwController.doGet - forward:updateClientPw.jsp -->
+			<!-- UpdateClientPwController.doPost - ClientDao.updateClientPw() - 로그아웃 되도록 session.invalidate() 세션초기화 - redirect:IndexController -->
+			<td><a href="<%=request.getContextPath()%>/UpdateClientPwController?clientMail=<%=client.getClientMail()%>">변경</a></td>
 		</tr>
 	</table>
-	<a href="">회원탈퇴</a>
+	<!-- DeleteClientController - CartDao.deleteCartAll(mail), ClientDao.deleteClient() - 로그아웃 되도록 session.invalidate() 세션초기화 - redirect:IndexController -->
+	<a href="<%=request.getContextPath()%>/DeleteClientController?clientMail=<%=client.getClientMail()%>">회원탈퇴</a>
 </body>
 </html>
