@@ -26,6 +26,7 @@ public class ClientOneController extends HttpServlet {
 		
 		//세션값 가져오기
 		Client client = (Client)session.getAttribute("loginClient");
+		System.out.println("client정보-> "+client);
 		
 		//값 넣어주기
 		request.setAttribute("clientOne", client);

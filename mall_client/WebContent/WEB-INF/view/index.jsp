@@ -9,8 +9,11 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include>
-	<!-- 메뉴 1-->
-	<!-- 메뉴 2 -->
+	<!-- 메뉴 1 로그인/회원가입/회원정보-->
+	<!-- 장바구니(세션) -->
+	<!-- 캘린더(이번달에 나온 책들) -->
+	<!-- 베스트셀러(주문량) -->
+	<!-- 메뉴 2 카테고리-->
 	<h1>index</h1>
 <%
 	List<Ebook> ebookList = (List<Ebook>)(request.getAttribute("ebookList")); //object type -> List<Ebook> type으로
@@ -26,7 +29,8 @@
 %>	
 			<td>
 				<div><img src="<%=request.getContextPath()%>/img/default.jpg"></div>
-				<div><a href="#"><%=ebook.getEbookTitle() %></a></div>
+				<!-- EbookOneController - EbookDao.ebookOne() - ebookOne.jsp -->
+				<div><a href="<%=request.getContextPath()%>/EbookOneController?ebookNo=<%=ebook.getEbookNo()%>"><%=ebook.getEbookTitle() %></a></div>
 				<div><%=ebook.getEbookPrice() %></div>
 			</td>
 <%
