@@ -63,6 +63,7 @@
 				<div><img src="<%=request.getContextPath()%>/img/default.jpg"></div>
 				<!-- EbookOneController - EbookDao.ebookOne() - ebookOne.jsp -->
 				<div><a href="<%=request.getContextPath()%>/EbookOneController?ebookNo=<%=ebook.getEbookNo()%>"><%=ebook.getEbookTitle() %></a></div>
+				<div><%=ebook.getEbookAuthor() %></div>
 				<div>\<%=ebook.getEbookPrice() %></div>
 			</td>
 <%
@@ -140,7 +141,7 @@
 %>
 	<!-- 이북 검색 -->
 	<form action="<%=request.getContextPath()%>/IndexController" method="post">
-		EbookTitle :
+		
 		<input type="hidden" name="categoryName" value="<%=paging.getCategoryName()%>"> 
 		<input type="text" name="searchWord">
 		<button type="submit">검색</button>

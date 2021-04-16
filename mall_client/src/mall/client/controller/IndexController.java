@@ -32,7 +32,7 @@ public class IndexController extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int rowPerPage = 20;
+		int rowPerPage = 15;
 		if(request.getParameter("rowPerPage") != null) {
 			rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
 		}
@@ -50,15 +50,10 @@ public class IndexController extends HttpServlet {
 			categoryName = request.getParameter("categoryName");
 		}
 
-		if(categoryName != null) {
+		if(categoryName != null) {	//카테고리 보기
 			totalRow = this.ebookDao.totalRowOfCategory(categoryName, searchWord);
-			System.out.println("카테고리보기. 검색어o&x");
-		} else if(!searchWord.equals("")) {
-			totalRow = this.ebookDao.totalRowWithSearchWord(searchWord);
-			System.out.println("전체보기. 검색어o");
-		} else {
-			totalRow = this.ebookDao.totalRow();
-			System.out.println("전체보기. 검색어x");
+		} else {	//전체보기
+			totalRow = this.ebookDao.totalRow(searchWord);
 		}
 		
 		int lastPage = totalRow/rowPerPage;
@@ -120,7 +115,7 @@ public class IndexController extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int rowPerPage = 20;
+		int rowPerPage = 15;
 		if(request.getParameter("rowPerPage") != null) {
 			rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
 		}
@@ -144,15 +139,10 @@ public class IndexController extends HttpServlet {
 			categoryName = null;
 		}
 		
-		if(categoryName != null) {
+		if(categoryName != null) {	//카테고리보기
 			totalRow = this.ebookDao.totalRowOfCategory(categoryName, searchWord);
-			System.out.println("카테고리보기. 검색어o&x");
-		} else if(!searchWord.equals("")) {
-			totalRow = this.ebookDao.totalRowWithSearchWord(searchWord);
-			System.out.println("전체보기. 검색어o");
-		} else {
-			totalRow = this.ebookDao.totalRow();
-			System.out.println("전체보기. 검색어x");
+		} else {	//전체보기
+			totalRow = this.ebookDao.totalRow(searchWord);
 		}
 		
 		int lastPage = totalRow/rowPerPage;
