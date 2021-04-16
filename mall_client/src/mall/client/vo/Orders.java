@@ -2,7 +2,7 @@ package mall.client.vo;
 
 public class Orders {
 	private int ordersNo;
-	private String ebookISBN;
+	private int ebookNo;
 	private int clientNo;
 	private String ordersDate;
 	private String ordersState;
@@ -12,6 +12,12 @@ public class Orders {
 	}
 	public void setOrdersNo(int ordersNo) {
 		this.ordersNo = ordersNo;
+	}
+	public int getEbookNo() {
+		return ebookNo;
+	}
+	public void setEbookNo(int ebookNo) {
+		this.ebookNo = ebookNo;
 	}
 	public int getClientNo() {
 		return clientNo;
@@ -31,16 +37,12 @@ public class Orders {
 	public void setOrdersState(String ordersState) {
 		this.ordersState = ordersState;
 	}
-	public String getEbookISBN() {
-		return ebookISBN;
-	}
-	public void setEbookISBN(String ebookISBN) {
-		this.ebookISBN = ebookISBN;
-	}
+	
+	
 	@Override
 	public String toString() {
-		return "Orders [ordersNo=" + ordersNo + ", ebookISBN=" + ebookISBN + ", clientNo=" + clientNo + ", ordersDate="
-				+ ordersDate + ", ordersState=" + ordersState + "]";
+		return "Orders [ordersNo=" + ordersNo + ", ebookNo=" + ebookNo + ", clientNo="
+				+ clientNo + ", ordersDate=" + ordersDate + ", ordersState=" + ordersState + "]";
 	}
 	
 }

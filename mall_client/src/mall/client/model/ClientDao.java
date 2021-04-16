@@ -123,7 +123,7 @@ public class ClientDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT client_mail clientMail, client_date clientDate, client_pw clientPw FROM client WHERE client_mail=? AND client_pw=PASSWORD(?)";
+			String sql = "SELECT client_no clientNo, client_mail clientMail, client_date clientDate, client_pw clientPw FROM client WHERE client_mail=? AND client_pw=PASSWORD(?)";
 			conn = this.dbUtil.getConnection();
 			stmt = conn.prepareStatement(sql); 
 			stmt.setString(1, client.getClientMail());
@@ -132,6 +132,7 @@ public class ClientDao {
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				returnClient = new Client();
+				returnClient.setClientNo(rs.getInt("clientNo"));
 				returnClient.setClientMail(rs.getString("clientMail"));
 				returnClient.setClientDate(rs.getString("clientDate"));
 				returnClient.setClientPw(rs.getString("clientPw"));
