@@ -36,6 +36,8 @@ if(session.getAttribute("loginClient")==null){
 			<li><a href="<%=request.getContextPath()%>/IndexController">홈으로</a></li>
 			<li><a href="<%=request.getContextPath()%>/ClientOneController">회원정보</a></li>
 			<li><a href="<%=request.getContextPath()%>/CartListController">카트</a></li>
+			<!-- 주문리스트 OrdersListcontroller - OrdersDao.selectOrdersListByClient() - OrdersList.jsp -->
+			<li><a href="<%=request.getContextPath()%>/OrdersListController">주문리스트</a></li>
 			<li><a href="<%=request.getContextPath()%>/LogoutController">로그아웃</a></li>
 		</ul>
 	</div>
