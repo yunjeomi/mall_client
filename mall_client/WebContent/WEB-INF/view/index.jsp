@@ -33,6 +33,24 @@
 %>
 	</ul>
 
+	<!-- 무슨 카테고리인지 볼 수 있도록 표시 -->
+<%
+	if(paging.getCategoryName() != null){
+%>	
+		<div>카테고리 "<%=paging.getCategoryName()%>" 선택</div>
+<%
+	}
+%>
+
+	<!-- ~로 검색한 결과입니다 표시 -->
+<%
+	if(!paging.getSearchWord().equals("")){
+%>	
+		<div>"<%=paging.getSearchWord() %>"로 검색한 결과입니다.</div>
+<%
+	}
+%>
+
 	<table border="1">
 		<tr>
 <%
@@ -70,8 +88,8 @@
 		if(paging.getCurrentPage()==1 && 1<paging.getLastPage()){
 %>
 			<span>[1]</span>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>">&gt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>">&gt;&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&searchWord=<%=paging.getSearchWord()%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&searchWord=<%=paging.getSearchWord()%>">&gt;&gt;</a>
 <%
 		} else if(paging.getCurrentPage()==1 || paging.getLastPage()==1){
 %> 
@@ -79,25 +97,25 @@
 <%
 		} else if(paging.getCurrentPage()==paging.getLastPage()){
 %>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1">&lt;&lt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>">&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1&searchWord=<%=paging.getSearchWord()%>">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&searchWord=<%=paging.getSearchWord()%>">&lt;</a>
 			<span>[<%=paging.getCurrentPage() %>]</span>
 <%
 		} else{
 %>	
 			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1">&lt;&lt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>">&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&searchWord=<%=paging.getSearchWord()%>">&lt;</a>
 			<span>[<%=paging.getCurrentPage() %>]</span>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>">&gt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>">&gt;&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&searchWord=<%=paging.getSearchWord()%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&searchWord=<%=paging.getSearchWord()%>">&gt;&gt;</a>
 <%
 		}
 	} else{
 		if(paging.getCurrentPage()==1 && 1<paging.getLastPage()){
 %>
 			<span>[1]</span>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&categoryName=<%=paging.getCategoryName()%>">&gt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&categoryName=<%=paging.getCategoryName()%>">&gt;&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&gt;&gt;</a>
 <%
 		} else if(paging.getCurrentPage()==1 || paging.getLastPage()==1){
 %> 
@@ -105,24 +123,25 @@
 <%
 		} else if(paging.getCurrentPage()==paging.getLastPage()){
 %>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1&categoryName=<%=paging.getCategoryName()%>">&lt;&lt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&categoryName=<%=paging.getCategoryName()%>">&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&lt;</a>
 			<span>[<%=paging.getCurrentPage() %>]</span>
 <%
 		}else{
 %>	
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1&categoryName=<%=paging.getCategoryName()%>">&lt;&lt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&categoryName=<%=paging.getCategoryName()%>">&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&lt;</a>
 			<span>[<%=paging.getCurrentPage() %>]</span>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&categoryName=<%=paging.getCategoryName()%>">&gt;</a>
-			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&categoryName=<%=paging.getCategoryName()%>">&gt;&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&categoryName=<%=paging.getCategoryName()%>&searchWord=<%=paging.getSearchWord()%>">&gt;&gt;</a>
 <%
 		}
 	}
 %>
 	<!-- 이북 검색 -->
 	<form action="<%=request.getContextPath()%>/IndexController" method="post">
-		EbookTitle : 
+		EbookTitle :
+		<input type="hidden" name="categoryName" value="<%=paging.getCategoryName()%>"> 
 		<input type="text" name="searchWord">
 		<button type="submit">검색</button>
 	</form>

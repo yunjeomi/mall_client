@@ -38,8 +38,8 @@ public class EbookDao {
 		return totalCnt;
 	}
 	
-	//totalRow 메소드 +category
-	public int totalRowOfCategory(String categoryName) {
+	//totalRow 메소드 with 검색어
+	public int totalRowWithSearchWord(String searchWord) {
 		int totalCnt = 0;
 		
 		this.dbUtil = new DBUtil();
@@ -48,14 +48,56 @@ public class EbookDao {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT COUNT(*) cnt FROM ebook WHERE category_name=?";
+			String sql = "SELECT COUNT(*) cnt FROM ebook WHERE ebook_title LIKE ?";
 			conn = this.dbUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, categoryName);
-			System.out.println("totalRow stmt-> "+stmt);
+			stmt.setString(1, "%"+searchWord+"%");
+			System.out.println("totalRow with searchWord stmt-> "+stmt);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				totalCnt = rs.getInt("cnt");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, rs);
+		}
+		
+		return totalCnt;
+	}
+	
+	//totalRow 메소드 with categoryName & searchWord
+	public int totalRowOfCategory(String categoryName, String searchWord) {
+		int totalCnt = 0;
+		
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			if(searchWord.equals("")) {	//검색어 없을 때
+				String sql = "SELECT COUNT(*) cnt FROM ebook WHERE category_name=?";
+				conn = this.dbUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, categoryName);
+				System.out.println("totalRow with categoryName stmt-> "+stmt);
+				rs = stmt.executeQuery();
+				if(rs.next()) {
+					totalCnt = rs.getInt("cnt");
+				}
+			} else {	//검색어 있을 때
+				String sql = "SELECT COUNT(*) cnt FROM ebook WHERE category_name=? AND ebook_title LIKE ?";
+				conn = this.dbUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, categoryName);
+				stmt.setString(2, "%"+searchWord+"%");
+				System.out.println("totalRow with categoryName & searchWord stmt-> "+stmt);
+				rs = stmt.executeQuery();
+				if(rs.next()) {
+					totalCnt = rs.getInt("cnt");
+				}
 			}
 			
 		} catch(Exception e) {
@@ -152,7 +194,7 @@ public class EbookDao {
 		ResultSet rs = null;
 		
 		try {
-			if(!searchWord.equals("")) {	//검색어 없을 때
+			if(searchWord.equals("")) {	//검색어 없을 때
 				String sql = "SELECT ebook_no ebookNo, ebook_title ebookTitle, ebook_price ebookPrice FROM ebook WHERE category_name = ? ORDER BY ebook_date DESC LIMIT ?, ?";
 				conn = this.dbUtil.getConnection();
 				stmt = conn.prepareStatement(sql);
@@ -199,34 +241,4 @@ public class EbookDao {
 		
 		return list;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
