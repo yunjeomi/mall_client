@@ -32,22 +32,34 @@ public class InsertCartController extends HttpServlet {
 		cart.setEbookNo(ebookNo);
 		cart.setClientMail(((Client)session.getAttribute("loginClient")).getClientMail());
 		
+		int clientNo = ((Client)(session.getAttribute("loginClient"))).getClientNo();
+		
 		//Dao실행
 		this.cartDao = new CartDao();
 		
 		//카트안에 동일한 이북이 존재하는지 확인
+		//주문리스트에 동일한 이북이 존재하는지 확인
 		//true->카트추가 가능  false->중복
 		Boolean checkEbook = true;
+		Boolean checkOrdersList = true;
 		checkEbook = this.cartDao.checkEbookInCart(cart);
+		checkOrdersList = this.cartDao.checkEbookInOrdersList(clientNo, ebookNo);
+		
+		if(checkOrdersList == false) {
+			System.out.println("*이미 구매한 ebook입니다.*\n");
+			response.sendRedirect(request.getContextPath()+"/EbookOneController?ebookNo="+ebookNo);
+			return;
+		}
+		
 		if(checkEbook == false) {
-			System.out.println("*카트에 동일한 ebook 존재*");
+			System.out.println("*카트에 동일한 ebook 존재*\n");
 			response.sendRedirect(request.getContextPath()+"/CartListController");
 			return;
 		}
 		
+		
 		this.cartDao.insertCart(cart);
-		System.out.println("*ebook 장바구니 추가 완료*");
-		System.out.println();
+		System.out.println("*ebook 장바구니 추가 완료*\n");
 		
 		//장바구니에 추가했으니 장바구니로 이동해라. CartListController
 		response.sendRedirect(request.getContextPath()+"/CartListController");

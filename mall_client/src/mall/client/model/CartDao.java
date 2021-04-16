@@ -9,6 +9,31 @@ import mall.client.vo.*;
 public class CartDao {
 	private DBUtil dbUtil;
 	
+	//카트에서 선택한 이북 삭제 메소드
+	public void deleteCart(Cart cart) {
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			String sql = "DELETE FROM cart WHERE client_mail=? AND ebook_no=?";
+			
+			conn = this.dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, cart.getClientMail());
+			stmt.setInt(2, cart.getEbookNo());
+			System.out.println("deleteCart stmt-> "+stmt);
+			stmt.executeUpdate();
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, null);
+		}
+		
+		return;
+	}
+	
 	//회원탈퇴 시, cartDB에 남아있는 정보 다 지우는 메소드
 	public void deleteCartByRemovedClient(Client client) {
 		this.dbUtil = new DBUtil();
@@ -49,6 +74,38 @@ public class CartDao {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, cart.getClientMail());
 			stmt.setInt(2, cart.getEbookNo());
+			System.out.println(" stmt-> "+stmt);
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = false;	//값이 있으면, 즉 중복이면 false
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			this.dbUtil.close(conn, stmt, rs);
+		}
+		
+		return flag;
+	}
+	
+	//ebook 장바구니추가 &주문리스트 중복 방지 메소드
+	public boolean checkEbookInOrdersList(int clientNo, int ebookNo) {
+		//중복이면 false, 중복아니면 true 
+		boolean flag = true;
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM orders WHERE client_no=? AND ebook_no=?";
+			
+			conn = this.dbUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, clientNo);
+			stmt.setInt(2, ebookNo);
 			System.out.println(" stmt-> "+stmt);
 			rs = stmt.executeQuery();
 			
