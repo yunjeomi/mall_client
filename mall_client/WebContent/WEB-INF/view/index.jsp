@@ -17,8 +17,20 @@
 	<h1>index</h1>
 <%
 	List<Ebook> ebookList = (List<Ebook>)(request.getAttribute("ebookList")); //object type -> List<Ebook> type으로
-	
+	List<Category> categoryList = (List<Category>)(request.getAttribute("categoryList"));
 %>
+	<!-- 카테고리별 나누기 -->
+	<ul>
+		<li><a href="<%=request.getContextPath()%>/IndexController">전체보기</a></li>
+<%
+	for(Category c : categoryList) {
+%>	
+		<li><a href="<%=request.getContextPath()%>/IndexController?categoryName=<%=c.getCategoryName()%>"><%=c.getCategoryName()%></a></li>
+<%	
+	}
+%>
+	</ul>
+
 	<table border="1">
 		<tr>
 <%
@@ -44,5 +56,20 @@
 %>
 		</tr>
 	</table>
+	
+	<!-- 페이징하기
+	1. 1페이지 + 다음 + 맨오른쪽		;
+	2. -1페이지-					;
+	3. 맨왼쪽 + 이전 + 끝페이지		;
+	4. 맨왼쪽 + 이전 + 다음 + 맨오른쪽	;
+	 -->
+	<a href=""></a>
+	
+	<!-- 이북 검색 -->
+	<form action="<%=request.getContextPath()%>/IndexController" method="post">
+		EbookTitle : 
+		<input type="text" name="searchWord">
+		<button type="submit">검색</button>
+	</form>
 </body>
 </html>
