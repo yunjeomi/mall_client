@@ -18,6 +18,8 @@
 <%
 	List<Ebook> ebookList = (List<Ebook>)(request.getAttribute("ebookList")); //object type -> List<Ebook> type으로
 	List<Category> categoryList = (List<Category>)(request.getAttribute("categoryList"));
+	Paging paging = (Paging)(request.getAttribute("paging"));
+	
 %>
 	<!-- 카테고리별 나누기 -->
 	<ul>
@@ -43,7 +45,7 @@
 				<div><img src="<%=request.getContextPath()%>/img/default.jpg"></div>
 				<!-- EbookOneController - EbookDao.ebookOne() - ebookOne.jsp -->
 				<div><a href="<%=request.getContextPath()%>/EbookOneController?ebookNo=<%=ebook.getEbookNo()%>"><%=ebook.getEbookTitle() %></a></div>
-				<div><%=ebook.getEbookPrice() %></div>
+				<div>\<%=ebook.getEbookPrice() %></div>
 			</td>
 <%
 			if(i%5==0){	//5번째 출력 후 다음 줄로 넘어가기
@@ -63,8 +65,61 @@
 	3. 맨왼쪽 + 이전 + 끝페이지		;
 	4. 맨왼쪽 + 이전 + 다음 + 맨오른쪽	;
 	 -->
-	<a href=""></a>
-	
+<%
+	if(paging.getCategoryName() == null){
+		if(paging.getCurrentPage()==1 && 1<paging.getLastPage()){
+%>
+			<span>[1]</span>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>">&gt;&gt;</a>
+<%
+		} else if(paging.getCurrentPage()==1 || paging.getLastPage()==1){
+%> 
+			<span>[1]</span>
+<%
+		} else if(paging.getCurrentPage()==paging.getLastPage()){
+%>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>">&lt;</a>
+			<span>[<%=paging.getCurrentPage() %>]</span>
+<%
+		} else{
+%>	
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>">&lt;</a>
+			<span>[<%=paging.getCurrentPage() %>]</span>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>">&gt;&gt;</a>
+<%
+		}
+	} else{
+		if(paging.getCurrentPage()==1 && 1<paging.getLastPage()){
+%>
+			<span>[1]</span>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&categoryName=<%=paging.getCategoryName()%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&categoryName=<%=paging.getCategoryName()%>">&gt;&gt;</a>
+<%
+		} else if(paging.getCurrentPage()==1 || paging.getLastPage()==1){
+%> 
+			<span>[1]</span>
+<%
+		} else if(paging.getCurrentPage()==paging.getLastPage()){
+%>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1&categoryName=<%=paging.getCategoryName()%>">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&categoryName=<%=paging.getCategoryName()%>">&lt;</a>
+			<span>[<%=paging.getCurrentPage() %>]</span>
+<%
+		}else{
+%>	
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=1&categoryName=<%=paging.getCategoryName()%>">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()-1%>&categoryName=<%=paging.getCategoryName()%>">&lt;</a>
+			<span>[<%=paging.getCurrentPage() %>]</span>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getCurrentPage()+1%>&categoryName=<%=paging.getCategoryName()%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/IndexController?currentPage=<%=paging.getLastPage()%>&categoryName=<%=paging.getCategoryName()%>">&gt;&gt;</a>
+<%
+		}
+	}
+%>
 	<!-- 이북 검색 -->
 	<form action="<%=request.getContextPath()%>/IndexController" method="post">
 		EbookTitle : 

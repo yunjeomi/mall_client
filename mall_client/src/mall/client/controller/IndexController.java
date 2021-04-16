@@ -14,6 +14,7 @@ import mall.client.model.CategoryDao;
 import mall.client.model.EbookDao;
 import mall.client.vo.Category;
 import mall.client.vo.Ebook;
+import mall.client.vo.Paging;
 
 //C->M->V로 이동
 @WebServlet("/IndexController")
@@ -68,6 +69,16 @@ public class IndexController extends HttpServlet {
 		System.out.println("categoryName-> "+categoryName);
 		System.out.println("searchWord-> "+searchWord);
 		
+		//페이징용 vo에 위 값들 넣어주기
+		Paging paging = new Paging();
+		paging.setBeginRow(beginRow);
+		paging.setCategoryName(categoryName);
+		paging.setCurrentPage(currentPage);
+		paging.setLastPage(lastPage);
+		paging.setRowPerPage(rowPerPage);
+		paging.setSearchWord(searchWord);
+		paging.setTotalRow(totalRow);
+		
 		//model 호출
 		List<Ebook> ebookList = new ArrayList<>();
 		if(categoryName != null) {
@@ -84,6 +95,7 @@ public class IndexController extends HttpServlet {
 		//View forwarding
 		request.setAttribute("ebookList", ebookList);	//request에 넣어서 뽑아낼 수 있도록
 		request.setAttribute("categoryList", categoryList);
+		request.setAttribute("paging", paging);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
 		rd.forward(request, response);
 	}
