@@ -10,6 +10,40 @@ public class EbookDao {
 	//select 메소드에 필요한 것 : dbUtil
 	private DBUtil dbUtil;
 	
+	//오늘의 책
+	public List<Map<String, Object>> ebookListByDay(int year, int month){
+		List<Map<String, Object>> list = new ArrayList<>();
+		
+		this.dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = this.dbUtil.getConnection();
+			String sql = "SELECT ebook_no ebookNo, ebook_title ebookTitle, DAY(ebook_date) d FROM ebook WHERE YEAR(ebook_date)=? and MONTH(ebook_date)=?";
+			
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, year);
+			stmt.setInt(2, month);
+			System.out.println("ebookListByDay stmt-> "+stmt);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<>();
+				map.put("ebookNo", rs.getInt("ebookNo"));
+				map.put("ebookTitle", rs.getString("ebookTitle"));
+				map.put("d", rs.getInt("d"));
+				list.add(map);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {	//try, catch 둘다 적어 코드 중복일 경우
+			this.dbUtil.close(conn, stmt, rs);
+		}
+		
+		return list;
+	}
+	
 	//totalRow -> 검색어 있을 때 & 없을 때
 	public int totalRow(String searchWord) {
 		int totalCnt = 0;
