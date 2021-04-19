@@ -19,7 +19,7 @@
 	List<Ebook> ebookList = (List<Ebook>)(request.getAttribute("ebookList")); //object type -> List<Ebook> type으로
 	List<Category> categoryList = (List<Category>)(request.getAttribute("categoryList"));
 	Paging paging = (Paging)(request.getAttribute("paging"));
-	
+	List<Map<String, Object>> bestOrdersList = (List<Map<String, Object>>)(request.getAttribute("bestOrdersList"));
 %>
 	<!-- 카테고리별 나누기 -->
 	<ul>
@@ -50,7 +50,29 @@
 <%
 	}
 %>
+	<!-- 베스트 상품 5개 출력 -->
+	<h3>Best Ebook</h3>
+	<table border="1">
+		<tr>
+<%
+			for(Map m : bestOrdersList){
+%>	
+				<td>
+					<div><img src="<%=request.getContextPath()%>/img/default.jpg"></div>
+					<!-- EbookOneController - EbookDao.ebookOne() - ebookOne.jsp -->
+					<div><a href="<%=request.getContextPath()%>/EbookOneController?ebookNo=<%=m.get("ebookNo")%>"><%=m.get("ebookTitle")%></a></div>
+					<div><%=m.get("ebookAuthor")%></div>
+					<div>\<%=m.get("ebookPrice")%></div>	
+				</td>
+<%
+			}
+%>	
+		</tr>
+	</table>
 
+
+	<!-- 전체 상품 출력  -->
+	<h3>EbookList</h3>
 	<table border="1">
 		<tr>
 <%

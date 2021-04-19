@@ -21,6 +21,7 @@ if(session.getAttribute("loginClient")==null){
 		<ul>
 			<!-- InsertClientController - /view/client/insertClient.jsp -->
 			<li><a href="<%=request.getContextPath()%>/InsertClientController">회원가입</a></li>
+			<li><a href="<%=request.getContextPath()%>/EbookCalendarController">이북캘린더</a></li>
 		</ul>
 	</div>
 <%
@@ -34,6 +35,7 @@ if(session.getAttribute("loginClient")==null){
 		</div>
 		<ul>
 			<li><a href="<%=request.getContextPath()%>/IndexController">홈으로</a></li>
+			<li><a href="<%=request.getContextPath()%>/EbookCalendarController">이북캘린더</a></li>
 			<li><a href="<%=request.getContextPath()%>/ClientOneController">회원정보</a></li>
 			<li><a href="<%=request.getContextPath()%>/CartListController">카트</a></li>
 			<!-- 주문리스트 OrdersListcontroller - OrdersDao.selectOrdersListByClient() - OrdersList.jsp -->

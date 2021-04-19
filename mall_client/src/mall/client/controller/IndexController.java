@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mall.client.model.CategoryDao;
-import mall.client.model.EbookDao;
-import mall.client.vo.Category;
-import mall.client.vo.Ebook;
-import mall.client.vo.Paging;
+import mall.client.model.*;
+import mall.client.vo.*;
 
 //C->M->V로 이동
 @WebServlet("/IndexController")
@@ -22,6 +19,7 @@ public class IndexController extends HttpServlet {
 	//controller는 원래 dao를 가져온다.
 	private EbookDao ebookDao;
 	private CategoryDao categoryDao;
+	private OrdersDao ordersDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//의존객체 생성
 		this.ebookDao = new EbookDao();
@@ -81,6 +79,7 @@ public class IndexController extends HttpServlet {
 		paging.setTotalRow(totalRow);
 		
 		//model 호출
+		//전체이북 리스트 출력 메소드 실행
 		List<Ebook> ebookList = new ArrayList<>();
 		if(categoryName != null) {
 			ebookList = this.ebookDao.ebookListByCategory(beginRow, rowPerPage, searchWord, categoryName);
@@ -89,14 +88,18 @@ public class IndexController extends HttpServlet {
 			ebookList = this.ebookDao.ebookList(beginRow, rowPerPage, searchWord);
 			System.out.println("*전체보기 List 출력*\n");
 		}
-		
+		//카테고리 리스트 출력 메소드 실행
 		this.categoryDao = new CategoryDao();
 		List<Category> categoryList = this.categoryDao.categoryList();
+		//베스트이북 리스트 출력 메소드 실행
+		this.ordersDao = new OrdersDao();
+		List<Map<String, Object>> bestOrdersList = this.ordersDao.bestOrdersList();
 		
 		//View forwarding
 		request.setAttribute("ebookList", ebookList);	//request에 넣어서 뽑아낼 수 있도록
 		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("paging", paging);
+		request.setAttribute("bestOrdersList", bestOrdersList);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
 		rd.forward(request, response);
 	}
@@ -170,6 +173,7 @@ public class IndexController extends HttpServlet {
 		paging.setTotalRow(totalRow);
 		
 		//model 호출
+		//전체이북 리스트 출력 메소드 실행
 		List<Ebook> ebookList = new ArrayList<>();
 		if(categoryName != null) {
 			ebookList = this.ebookDao.ebookListByCategory(beginRow, rowPerPage, searchWord, categoryName);
@@ -178,14 +182,18 @@ public class IndexController extends HttpServlet {
 			ebookList = this.ebookDao.ebookList(beginRow, rowPerPage, searchWord);
 			System.out.println("*전체보기 List 출력*\n");
 		}
-		
+		//카테고리 리스트 출력 메소드 실행
 		this.categoryDao = new CategoryDao();
 		List<Category> categoryList = this.categoryDao.categoryList();
+		//베스트이북 리스트 출력 메소드 실행
+		this.ordersDao = new OrdersDao();
+		List<Map<String, Object>> bestOrdersList = this.ordersDao.bestOrdersList();
 		
 		//View forwarding
 		request.setAttribute("ebookList", ebookList);	//request에 넣어서 뽑아낼 수 있도록
 		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("paging", paging);
+		request.setAttribute("bestOrdersList", bestOrdersList);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
 		rd.forward(request, response);
 		
