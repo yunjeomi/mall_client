@@ -7,69 +7,100 @@
 <title>ebookOne</title>
 </head>
 <body>
-
-	<!-- 메뉴 -->
-	<jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include>
-
-	<h1>ebookOne</h1>
+	<!-- Header -->
+	<header id="header">
+		<h1><strong><a href="${pageContext.request.contextPath}/IndexController">EbookMall</a></strong> for you</h1>
+		<nav id="nav">
+			<ul>
+				<li><jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include></li>
+			</ul>
+		</nav>
+	</header>
 	
-	<table border="1">
-		<tr>
-			<td>ebookTitle</td>
-			<td>${ebookOne.ebookTitle }</td>
-		</tr>	
-		<tr>
-			<td>categoryName</td>
-			<td>${ebookOne.categoryName }</td>
-		</tr>
-		<tr>
-			<td>ebookISBN</td>
-			<td>${ebookOne.ebookISBN }</td>
-		</tr>
-		<tr>
-			<td>ebookAuthor</td>
-			<td>${ebookOne.ebookAuthor }</td>
-		</tr>	
-		<tr>
-			<td>ebookCompany</td>
-			<td>${ebookOne.ebookCompany }</td>
-		</tr>	
-		<tr>
-			<td>ebookSummary</td>
-			<td>${ebookOne.ebookSummary }</td>
-		</tr>
-		<tr>
-			<td>ebookImg</td>
-			<td>${ebookOne.ebookImg }</td>
-		</tr>	
-		<tr>
-			<td>ebookDate</td>
-			<td>${ebookOne.ebookDate }</td>
-		</tr>
-		<tr>
-			<td>ebookState</td>
-			<td>${ebookOne.ebookState }</td>
-		</tr>
-		<tr>
-			<td>ebookPageCount</td>
-			<td>${ebookOne.ebookPageCount }</td>
-		</tr>	
-		<tr>
-			<td>ebookPrice</td>
-			<td>${ebookOne.ebookPrice }</td>
-		</tr>	
-	</table>
-	<!-- InsertCartController?ebookNo - CartDao.insertCart() - redirect;CartListController -->
-	<a href="${pageContext.request.contextPath}/InsertCartController?ebookNo=${ebookOne.ebookNo}">
+	<section id="main" class="wrapper">
+		<div class="container">
+			<header class="major special">
+				<h1>ebookOne</h1>
+			</header>
+		
+			<div class="table-wrapper">
+				<table class="alt">
+					<tr>
+						<td>ebookTitle</td>
+						<td>${ebookOne.ebookTitle }</td>
+					</tr>	
+					<tr>
+						<td>categoryName</td>
+						<td>${ebookOne.categoryName }</td>
+					</tr>
+					<tr>
+						<td>ebookISBN</td>
+						<td>${ebookOne.ebookISBN }</td>
+					</tr>
+					<tr>
+						<td>ebookAuthor</td>
+						<td>${ebookOne.ebookAuthor }</td>
+					</tr>	
+					<tr>
+						<td>ebookCompany</td>
+						<td>${ebookOne.ebookCompany }</td>
+					</tr>	
+					<tr>
+						<td>ebookSummary</td>
+						<td>${ebookOne.ebookSummary }</td>
+					</tr>
+					<tr>
+						<td>ebookImg</td>
+						<td>${ebookOne.ebookImg }</td>
+					</tr>	
+					<tr>
+						<td>ebookDate</td>
+						<td>${ebookOne.ebookDate }</td>
+					</tr>
+					<tr>
+						<td>ebookState</td>
+						<td>${ebookOne.ebookState }</td>
+					</tr>
+					<tr>
+						<td>ebookPageCount</td>
+						<td>${ebookOne.ebookPageCount }</td>
+					</tr>	
+					<tr>
+						<td>ebookPrice</td>
+						<td>${ebookOne.ebookPrice }</td>
+					</tr>	
+				</table>
+				
+				<!-- 장바구니 추가 버튼 -->
+				<a href="${pageContext.request.contextPath}/InsertCartController?ebookNo=${ebookOne.ebookNo}">
+					<!-- 버튼 활성화 -->
+					<c:if test="${loginClient!=null && ebookOne.ebookState.equals('판매중')}" >
+						<button type="button">장바구니추가</button>
+					</c:if>
+					<!-- 버튼 비활성화 -->
+					<c:if test="${loginClient==null || !ebookOne.ebookState.equals('판매중')}">
+						<button type="button" disabled="disabled">장바구니추가</button>
+					</c:if>
+				</a>
+			</div>
+		</div>
+	</section>
 	
-	<c:if test="${loginClient!=null && ebookOne.ebookState.equals('판매중')}" >
-		<button type="button">장바구니추가</button>
-	</c:if>
-
-	<c:if test="${loginClient==null || !ebookOne.ebookState.equals('판매중')}">
-		<button type="button" disabled="disabled">장바구니추가</button>
-	</c:if>
-	</a>
+<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<ul class="icons">
+				<li><a href="#" class="icon fa-facebook"></a></li>
+				<li><a href="#" class="icon fa-twitter"></a></li>
+				<li><a href="#" class="icon fa-instagram"></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; yunjeong</li>
+				<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+				<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+			</ul>
+		</div>
+	</footer>
 </body>
 </html>
 
