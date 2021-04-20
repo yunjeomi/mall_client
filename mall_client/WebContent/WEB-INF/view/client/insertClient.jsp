@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 </head>
 <body>
 	<h1>insertClient</h1>
-	<form action="<%=request.getContextPath()%>/InsertClientController" method="post">
+	<form action="${pageContext.request.contextPath}/InsertClientController" method="post">
 		<!-- 정규표현식 나중에 추가 required pattern="" -->
 		<table border="1">
 			<tr>
