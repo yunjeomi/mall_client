@@ -45,11 +45,37 @@ public class EbookCalendarController extends HttpServlet {
 		this.ebookDao = new EbookDao();
 		List<Map<String,Object>> ebookListByDay = this.ebookDao.ebookListByDay(currentYear, currentMonth);
 		
+		//preYear, preMonth, nextYear, nextMonth
+		int preYear = currentYear;
+		int preMonth = currentMonth-1;
+		if(preMonth == 0){	//1월에서 이전 클릭하면 12월로
+			preMonth = 12;
+			preYear -= 1;
+		}
+		int nextYear = currentYear;
+		int nextMonth = currentMonth+1;
+		if(nextMonth == 11){	//12월에서 이후 클릭하면 1월로
+			nextMonth = 1;
+			nextYear += 1;
+		}
+		
+		//디버깅추가
+		System.out.println("preYear-> "+preYear);
+		System.out.println("preMonth-> "+preMonth);
+		System.out.println("nextYear-> "+nextYear);
+		System.out.println("nextMonth-> "+nextMonth);
+		
 		request.setAttribute("currentYear", currentYear);
 		request.setAttribute("currentMonth", currentMonth);
 		request.setAttribute("endDay", endDay);
 		request.setAttribute("firstDayOfWeek", firstDayOfWeek);
 		request.setAttribute("ebookListByDay", ebookListByDay);
+		
+		request.setAttribute("preYear", preYear);
+		request.setAttribute("preMonth", preMonth);
+		request.setAttribute("nextYear", nextYear);
+		request.setAttribute("nextMonth", nextMonth);
+		
 		request.getRequestDispatcher("/WEB-INF/view/ebook/ebookCalendar.jsp").forward(request, response);
 	}
 

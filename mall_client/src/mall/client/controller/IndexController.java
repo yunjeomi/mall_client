@@ -68,16 +68,6 @@ public class IndexController extends HttpServlet {
 		System.out.println("categoryName-> "+categoryName);
 		System.out.println("searchWord-> "+searchWord);
 		
-		//페이징용 vo에 위 값들 넣어주기
-		Paging paging = new Paging();
-		paging.setBeginRow(beginRow);
-		paging.setCategoryName(categoryName);
-		paging.setCurrentPage(currentPage);
-		paging.setLastPage(lastPage);
-		paging.setRowPerPage(rowPerPage);
-		paging.setSearchWord(searchWord);
-		paging.setTotalRow(totalRow);
-		
 		//model 호출
 		//전체이북 리스트 출력 메소드 실행
 		List<Ebook> ebookList = new ArrayList<>();
@@ -98,8 +88,15 @@ public class IndexController extends HttpServlet {
 		//View forwarding
 		request.setAttribute("ebookList", ebookList);	//request에 넣어서 뽑아낼 수 있도록
 		request.setAttribute("categoryList", categoryList);
-		request.setAttribute("paging", paging);
 		request.setAttribute("bestOrdersList", bestOrdersList);
+		//페이징용
+		request.setAttribute("beginRow", beginRow);
+		request.setAttribute("categoryName", categoryName);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("lastPage", lastPage);
+		request.setAttribute("rowPerPage", rowPerPage);
+		request.setAttribute("searchWord", searchWord);
+		request.setAttribute("totalRow", totalRow);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
 		rd.forward(request, response);
 	}
@@ -137,8 +134,8 @@ public class IndexController extends HttpServlet {
 			categoryName = request.getParameter("categoryName");
 		} 
 		
-		//전체보기에서 검색어 입력할 경우 카테고리 값은 문자열 null. 문자열을 객체가없는 null로 다시 넣어준다.
-		if(categoryName.equals("null")) {
+		//전체보기에서 검색어 입력할 경우 카테고리 값은 ""입력됨. 문자열을 객체가없는 null로 다시 넣어준다.
+		if(categoryName.equals("")) {
 			categoryName = null;
 		}
 		
@@ -161,17 +158,7 @@ public class IndexController extends HttpServlet {
 		System.out.println("lastPage-> "+lastPage);
 		System.out.println("categoryName-> "+categoryName);
 		System.out.println("searchWord-> "+searchWord);
-		
-		//페이징용 vo에 위 값들 넣어주기
-		Paging paging = new Paging();
-		paging.setBeginRow(beginRow);
-		paging.setCategoryName(categoryName);
-		paging.setCurrentPage(currentPage);
-		paging.setLastPage(lastPage);
-		paging.setRowPerPage(rowPerPage);
-		paging.setSearchWord(searchWord);
-		paging.setTotalRow(totalRow);
-		
+	
 		//model 호출
 		//전체이북 리스트 출력 메소드 실행
 		List<Ebook> ebookList = new ArrayList<>();
@@ -190,10 +177,18 @@ public class IndexController extends HttpServlet {
 		List<Map<String, Object>> bestOrdersList = this.ordersDao.bestOrdersList();
 		
 		//View forwarding
-		request.setAttribute("ebookList", ebookList);	//request에 넣어서 뽑아낼 수 있도록
+		request.setAttribute("ebookList", ebookList);
 		request.setAttribute("categoryList", categoryList);
-		request.setAttribute("paging", paging);
 		request.setAttribute("bestOrdersList", bestOrdersList);
+		//페이징용
+		request.setAttribute("beginRow", beginRow);
+		request.setAttribute("categoryName", categoryName);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("lastPage", lastPage);
+		request.setAttribute("rowPerPage", rowPerPage);
+		request.setAttribute("searchWord", searchWord);
+		request.setAttribute("totalRow", totalRow);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
 		rd.forward(request, response);
 		
