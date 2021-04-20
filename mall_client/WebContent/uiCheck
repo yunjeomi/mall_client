@@ -1,0 +1,97 @@
+버튼 하얀색바탕 class="button alt"
+버튼 검정바탕 class="button"
+버튼 하얀색바탕 class="button alt small"
+버튼 검정바탕 class="button small" 폰트사이즈 0.8em
+버튼 오른쪽 정렬 style="float: right"
+오른쪽 정렬 클래스 class="align-right"
+가운데 정렬 클래스 class="align-center"
+style="text-align:center; vertical-align:center;"
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+양식
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+
+<body>
+	<!-- Header -->
+	<header id="header">
+		<h1><strong><a href="${pageContext.request.contextPath}/IndexController">EbookMall</a></strong> for you</h1>
+		<nav id="nav">
+			<ul>
+				<li><jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<section id="main" class="wrapper">
+		<div class="container">
+			<header class="major special">
+				<h1></h1>
+			</header>
+		
+			<div class="table-wrapper">
+				<table class="alt">
+				</table>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<ul class="icons">
+				<li><a href="#" class="icon fa-facebook"></a></li>
+				<li><a href="#" class="icon fa-twitter"></a></li>
+				<li><a href="#" class="icon fa-instagram"></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; yunjeong</li>
+				<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+				<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+			</ul>
+		</div>
+	</footer>
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+정규표현식
+메타문자(키워드)
+^x : x로 시작하는
+x$ : x로 끝나는
+x+ : x가 1번이상 반복
+x{1, 10} : x가 1번에서 10번사이
+약식키워드
+\w : [a-zA-Z0-9] 의 약식표현
+\d : [0-9]의 약식표현
+
+<input type="text" name="managerId" required pattern="^[a-z0-9]{4,15}$">
+
+<input type="password" name="managerPw" required pattern="^[a-zA-Z0-9\W]{4,15}$">
+
+<input type="text" name="ebookISBN"  required pattern="^\d{9}-\d{1}$">
+
+<input type="text" name="ebookAuthor" required pattern="^[a-zA-Z가-힣\s]+$">
+
+<input type="text" name="ebookPageCount" required pattern="^[0-9]+$">
+
+<input type="text" name="ebookPrice" required pattern="^[0-9]+$">
+
+<input type="text" name="managerId" required pattern="^[a-z0-9]{4,15}$">
+
+<input type="password" name="managerPw" required pattern="^[a-zA-Z0-9\W]{4,15}$">
+
+<input type="text" name="managerName" required pattern="^[a-zA-Z가-힣]{2,20}$">
+
+<input type="text" name="managerName" required pattern="^[a-zA-Z가-힣0-9]{1,100}$">
+
+<input type="text" name="managerName" required pattern="^[a-zA-Z가-힣0-9~!@#$%^&*(){}-=+/]{1,20}$">
