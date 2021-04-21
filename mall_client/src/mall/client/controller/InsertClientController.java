@@ -32,8 +32,6 @@ public class InsertClientController extends HttpServlet {
 
 	// post; action : c -> m (중간에 v가 없음. m끝난 후 또 다른 c를 부른다. redirect로)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//post 한글 인코딩
-		request.setCharacterEncoding("utf-8");
 		
 		//request 분석
 		String clientMail = request.getParameter("clientMail");

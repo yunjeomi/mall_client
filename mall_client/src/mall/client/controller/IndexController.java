@@ -103,8 +103,6 @@ public class IndexController extends HttpServlet {
 	
 	//검색 시 post로 넘겨받는다.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인코딩
-		request.setCharacterEncoding("UTF-8");
 		
 		//의존객체 생성
 		this.ebookDao = new EbookDao();

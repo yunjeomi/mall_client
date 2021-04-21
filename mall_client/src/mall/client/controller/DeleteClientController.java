@@ -35,8 +35,6 @@ public class DeleteClientController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인코딩
-		request.setCharacterEncoding("UTF-8");
 		
 		//수집
 		String clientMail = request.getParameter("clientMail");

@@ -36,8 +36,6 @@ public class UpdateClientPwController extends HttpServlet {
 
 	//updateClientPw.jsp에서 정보 넘길 때
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인코딩
-		request.setCharacterEncoding("UTF-8");
 		
 		//수집
 		String clientMail = request.getParameter("clientMail");
