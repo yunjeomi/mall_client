@@ -152,9 +152,15 @@
 			<input type="text" name="searchWord" class="search" placeholder="검색어를 입력해주세요.">
 			<button type="submit">검색</button>
 		</form>
+		<br><br>
+		
+		<!-- 접속자 수 -->
+		<div>오늘 접속자 수 : ${statsCount}</div>
+		<div>전체 접속자 수 : ${total}</div>
 		
 		</div>
 	</section>
+
 	
 	<!-- Footer -->
 	<footer id="footer">

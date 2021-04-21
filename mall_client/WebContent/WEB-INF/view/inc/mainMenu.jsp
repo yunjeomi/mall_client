@@ -7,8 +7,6 @@
 <title>mainMenu</title>
 </head>
 <body>
-<!-- 상단 메인 메뉴 -->
-
 <!-- 로그인 전 -->
 <c:if test="${loginClient==null}">
 			<form action="${pageContext.request.contextPath}/LoginController" method="post" class="formSearch">

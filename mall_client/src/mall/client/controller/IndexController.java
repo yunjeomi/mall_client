@@ -20,6 +20,7 @@ public class IndexController extends HttpServlet {
 	private EbookDao ebookDao;
 	private CategoryDao categoryDao;
 	private OrdersDao ordersDao;
+	private StatsDao statsDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
@@ -89,6 +90,12 @@ public class IndexController extends HttpServlet {
 		this.ordersDao = new OrdersDao();
 		List<Map<String, Object>> bestOrdersList = this.ordersDao.bestOrdersList();
 		
+		//접속자 관련 데이터
+		this.statsDao = new StatsDao();
+		long total = this.statsDao.statsTotal();
+		long statsCount = this.statsDao.statsByToday().getStatsCount();
+		
+		
 		//View forwarding
 		request.setAttribute("ebookList", ebookList);	//request에 넣어서 뽑아낼 수 있도록
 		request.setAttribute("categoryList", categoryList);
@@ -101,6 +108,10 @@ public class IndexController extends HttpServlet {
 		request.setAttribute("rowPerPage", rowPerPage);
 		request.setAttribute("searchWord", searchWord);
 		request.setAttribute("totalRow", totalRow);
+		//접속자용
+		request.setAttribute("total", total);
+		request.setAttribute("statsCount", statsCount);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
 		rd.forward(request, response);
 	}
@@ -137,7 +148,7 @@ public class IndexController extends HttpServlet {
 			categoryName = request.getParameter("categoryName");
 		} 
 		
-		//전체보기에서 검색어 입력할 경우 카테고리 값은 ""입력됨. 문자열을 객체가없는 null로 다시 넣어준다.
+		//JSTL태그 사용 시, 전체보기에서 검색어 입력할 경우 카테고리 값은 ""입력됨. 문자열을 객체가없는 null로 다시 넣어준다.
 		if(categoryName.equals("")) {
 			categoryName = null;
 		}
