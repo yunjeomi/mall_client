@@ -21,6 +21,10 @@ public class IndexController extends HttpServlet {
 	private CategoryDao categoryDao;
 	private OrdersDao ordersDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		System.out.println("/IndexController 시작..!");
+		
 		//의존객체 생성
 		this.ebookDao = new EbookDao();
 		
@@ -106,6 +110,7 @@ public class IndexController extends HttpServlet {
 		
 		//의존객체 생성
 		this.ebookDao = new EbookDao();
+		
 		
 		//request 분석
 		int currentPage = 1;

@@ -5,13 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>mainMenu</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
-
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </head>
 <body>
 <!-- 상단 메인 메뉴 -->

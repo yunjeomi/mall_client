@@ -7,7 +7,6 @@ public class DBUtil {
 	public Connection getConnection() {
 		Connection conn = null;
 		try {	//예외가 발생하면 catch절로 넘기고 예외 메시지를 출력하겠다.
-			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mall", "root", "java1004");
 		} catch(Exception e) {
 			e.printStackTrace();

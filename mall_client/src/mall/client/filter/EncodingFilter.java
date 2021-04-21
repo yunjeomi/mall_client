@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebFilter;
 //필터는 Filter 인터페이스를 구현한다. 
 public class EncodingFilter implements Filter {
 
-	//servlet의 doGet,goPost는 HttpServletRequest이다. 얘네는 ServletRequest의 부모격
+	//servlet의 doGet,goPost는 HttpServletRequest이다. HttpServletRequest는 ServletRequest를 상속받음.
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 		request.setCharacterEncoding("UTF-8");
