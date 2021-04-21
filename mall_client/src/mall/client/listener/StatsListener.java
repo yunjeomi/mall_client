@@ -14,13 +14,15 @@ public class StatsListener implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent se)  { 
         //1. 오늘 날짜의 카운트가 없으면 1을 insert
     	//2. 오늘 날짜의 카운트가 있으면 +1을 업데이트
-    	System.out.println("새로운 세션이 생성 되었습니다.");
     	
-    	this.statsDao = new StatsDao();
-    	if(this.statsDao.statsByToday() == null) {
-    		this.statsDao.insertStats();
-    	} else {
-    		this.statsDao.updateStats();
+    	if(se.getSession().isNew()) {
+	    	System.out.println("새로운 세션이 생성 되었습니다.");
+	    	this.statsDao = new StatsDao();
+	    	if(this.statsDao.statsByToday() == null) {
+	    		this.statsDao.insertStats();
+	    	} else {
+	    		this.statsDao.updateStats();
+	    	}
     	}
     }
 

@@ -93,8 +93,11 @@ public class IndexController extends HttpServlet {
 		//접속자 관련 데이터
 		this.statsDao = new StatsDao();
 		long total = this.statsDao.statsTotal();
-		long statsCount = this.statsDao.statsByToday().getStatsCount();
-		
+		Stats stats = this.statsDao.statsByToday();
+		long statsCount = 0;
+		if(stats != null) {
+			statsCount = stats.getStatsCount();
+		}
 		
 		//View forwarding
 		request.setAttribute("ebookList", ebookList);	//request에 넣어서 뽑아낼 수 있도록
@@ -190,6 +193,15 @@ public class IndexController extends HttpServlet {
 		this.ordersDao = new OrdersDao();
 		List<Map<String, Object>> bestOrdersList = this.ordersDao.bestOrdersList();
 		
+		//접속자 관련 데이터
+		this.statsDao = new StatsDao();
+		long total = this.statsDao.statsTotal();
+		Stats stats = this.statsDao.statsByToday();
+		long statsCount = 0;
+		if(stats != null) {
+			statsCount = stats.getStatsCount();
+		}
+		
 		//View forwarding
 		request.setAttribute("ebookList", ebookList);
 		request.setAttribute("categoryList", categoryList);
@@ -202,6 +214,9 @@ public class IndexController extends HttpServlet {
 		request.setAttribute("rowPerPage", rowPerPage);
 		request.setAttribute("searchWord", searchWord);
 		request.setAttribute("totalRow", totalRow);
+		//접속자용
+		request.setAttribute("total", total);
+		request.setAttribute("statsCount", statsCount);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/index.jsp");
 		rd.forward(request, response);
