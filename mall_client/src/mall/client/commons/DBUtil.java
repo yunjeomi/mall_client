@@ -19,14 +19,14 @@ public class DBUtil {
 	//db 연결자 수는 한정되어 있는데, db 사용 후 아직 남아있으면 
 	//null이면 nullPointException. null 아닐 때 메소드 실행 가능하도록.
 	public void close(Connection conn, PreparedStatement stmt, ResultSet rs) {
-		if(rs != null) {
+		if(conn != null) {
 			try {
-				rs.close();
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		if(rs != null) {
+		if(stmt != null) {
 			try {
 				stmt.close();
 			} catch (Exception e) {
@@ -35,7 +35,7 @@ public class DBUtil {
 		}
 		if(rs != null) {
 			try {
-				conn.close();
+				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
