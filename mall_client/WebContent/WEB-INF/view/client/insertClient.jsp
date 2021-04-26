@@ -25,13 +25,13 @@
 	</header>
 	
 	<section id="main" class="wrapper">
-		<div class="container">
+		<div class="container 75%">
 			<header class="major special">
-				<h1>insert Client</h1>
+				<h2>insert Client</h2>
 			</header>
 			
-			<div class="table-wrapper">		
-				<form action="${pageContext.request.contextPath}/InsertClientController" method="post">
+			<form action="${pageContext.request.contextPath}/InsertClientController" method="post">
+				<div class="table-wrapper">		
 					<!-- 정규표현식 나중에 추가 required pattern="" -->
 					<table class="alt">
 						<tr>
@@ -43,9 +43,9 @@
 							<td><input type="password" name="clientPw"></td>
 						</tr>
 					</table>
-					<button type="submit">회원가입</button>
-				</form>
-			</div>
+				</div>
+				<button type="submit">회원가입</button>
+			</form>
 		</div>
 	</section>
 	

@@ -2197,25 +2197,25 @@
 		font-size: 0.8em;
 	}
 	
+	form.formSearch{
+		display: inline;
+	}
+	
 	input[type="text"].search{
 		width: 30%;
 		display: inline;
 	}
 	
-	input[type="password"].loginId{
-		width: 2.75em;
+	input[type="text"].loginId{
+		width: 200px;
 		display: inline;
 	}
 	
 	input[type="password"].loginPw{
-		width: 2.75em;
+		width: 200px;
 		display: inline;
 	}
 	
-	form.formSearch{
-		display: inline;
-	}
-
 	textarea {
 		padding: 0.75em 1em;
 	}

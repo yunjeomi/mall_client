@@ -9,17 +9,20 @@
 <body>
 <!-- 로그인 전 -->
 <c:if test="${loginClient==null}">
-			<form action="${pageContext.request.contextPath}/LoginController" method="post" class="formSearch">
-				ID <input type="text" name="clientMail" class="loginId">
-				PW <input type="password" name="clientPw" class="loginPw">
-				<button type="submit">로그인</button>
-			</form>
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/IndexController">홈으로</a></li>
-				<li><a href="${pageContext.request.contextPath}/InsertClientController">회원가입</a></li>
-				<li><a href="${pageContext.request.contextPath}/EbookCalendarController">이북캘린더</a></li>
-			</ul>
-		
+	<div>
+		<form action="${pageContext.request.contextPath}/LoginController" method="post">
+			ID <input type="text" name="clientMail" class="loginId">
+			&nbsp;
+			PW <input type="password" name="clientPw" class="loginPw">
+			<button type="submit">로그인</button>
+			<span>&nbsp&nbsp</span>
+			<span><a href="${pageContext.request.contextPath}/InsertClientController">회원가입</a></span>
+			<span>&nbsp&nbsp</span>
+			<span><a href="${pageContext.request.contextPath}/EbookCalendarController">이북캘린더</a></span>
+			<span>&nbsp&nbsp</span>
+			<span><a href="${pageContext.request.contextPath}/IndexController">홈</a></span>
+		</form>
+	</div>	
 </c:if>	
 
 <!-- 로그인 후-->
@@ -27,7 +30,7 @@
 	<div>
 		<ul>
 			<li>${loginClient.clientMail}님 환영합니다</li>
-			<li><a href="${pageContext.request.contextPath}/IndexController">홈으로</a></li>
+			<li><a href="${pageContext.request.contextPath}/IndexController">홈</a></li>
 			<li><a href="${pageContext.request.contextPath}/EbookCalendarController">이북캘린더</a></li>
 			<li><a href="${pageContext.request.contextPath}/CartListController">장바구니</a></li>
 			<li><a href="${pageContext.request.contextPath}/OrdersListController">주문내역</a></li>

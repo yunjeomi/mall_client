@@ -9,6 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>ordersList</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </head>
 <body>
 <%
@@ -25,30 +32,30 @@
 	</header>
 	
 	<section id="main" class="wrapper">
-		<div class="container">
+		<div class="container 75%">
 			<header class="major special">
-				<h1>ordersList</h1>
+				<h2>ordersList</h2>
 			</header>
 		
 			<div class="table-wrapper">
 				<table class="alt">
 					<tr>
-						<td>ordersNo</td>
-						<td>ebookNo</td>
-						<td>ordersDate</td>
-						<td>ordersState</td>
-						<td>ebookTitle</td>
-						<td>ebookPrice</td>
+						<th>ordersNo</th>
+						<th>ordersState</th>
+						<th>ebookNo</th>
+						<th>ebookTitle</th>
+						<th>ebookPrice</th>
+						<th>ordersDate</th>
 					</tr>
 			
 					<c:forEach var="m" items="${ordersList}">
 					<tr>
 						<td>${m.ordersNo}</td>
-						<td>${m.ebookNo}</td>
-						<td>${m.ordersDate}</td>
 						<td>${m.ordersState}</td>
+						<td>${m.ebookNo}</td>
 						<td>${m.ebookTitle}</td>
 						<td>${m.ebookPrice}</td>
+						<td>${m.ordersDate}</td>
 					</tr>
 					</c:forEach>
 				</table>

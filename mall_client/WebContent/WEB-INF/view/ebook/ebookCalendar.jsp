@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>ebookCalendar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </head>
 <body>
 <!-- Header -->
@@ -20,7 +27,7 @@
 	<section id="main" class="wrapper">
 		<div class="container">
 			<header class="major special">
-				<h1>Ebook Calendar</h1>
+				<h2>Ebook Calendar</h2>
 			</header>
 		
 			<div class="table-wrapper">
@@ -34,14 +41,14 @@
 				</div>
 				
 				<table class="alt">
-					<tr>
-						<td>일</td>
-						<td>월</td>
-						<td>화</td>
-						<td>수</td>
-						<td>목</td>
-						<td>금</td>
-						<td>토</td>
+					<tr style="text-align:center; vertical-align:center;">
+						<th>일</th>
+						<th>월</th>
+						<th>화</th>
+						<th>수</th>
+						<th>목</th>
+						<th>금</th>
+						<th>토</th>
 					</tr>
 					
 					<tr>

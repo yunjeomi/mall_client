@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>deleteClient</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </head>
 <body>
 <!-- Header -->
@@ -18,13 +25,13 @@
 	</header>
 	
 	<section id="main" class="wrapper">
-		<div class="container">
+		<div class="container 75%">
 			<header class="major special">
-				<h1>deleteClient</h1>
+				<h2>deleteClient</h2>
 			</header>
 			
-			<div class="table-wrapper">
-				<form action="${pageContext.request.contextPath}/DeleteClientController" method="post">
+			<form action="${pageContext.request.contextPath}/DeleteClientController" method="post">
+				<div class="table-wrapper">
 					<table class="alt">
 						<tr>
 							<td>client_mail</td>
@@ -35,9 +42,10 @@
 							<td><input type="password" name="clientPw"></td>
 						</tr>
 					</table>
-					<button type="submit">삭제</button>
-				</form>
-			</div>
+				</div>
+				<button type="submit">삭제</button>
+				<a href="${pageContext.request.contextPath}/ClientOneController" class="button alt small">취소</a>
+			</form>
 		</div>
 	</section>
 	

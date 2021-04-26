@@ -25,21 +25,21 @@
 	</header>
 	
 	<section id="main" class="wrapper">
-		<div class="container">
+		<div class="container 75%">
 			<header class="major special">
-				<h1>cartList</h1>
+				<h2>cartList</h2>
 			</header>
 
 			<div class="table-wrapper">
 				<form>
 				<table class="alt">
 					<tr>
-						<td>cartNo</td>
-						<td>ebookTitle</td>
-						<td>ebookPrice</td>
-						<td>cartDate</td>
-						<td>삭제</td>
-						<td>주문</td>
+						<th>cartNo</th>
+						<th>ebookTitle</th>
+						<th>ebookPrice</th>
+						<th>cartDate</th>
+						<th>삭제</th>
+						<th>주문</th>
 					</tr>
 					
 					<!-- list 출력 -->

@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>ebookOne</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </head>
 <body>
 	<!-- Header -->
@@ -18,9 +25,9 @@
 	</header>
 	
 	<section id="main" class="wrapper">
-		<div class="container">
+		<div class="container 75%">
 			<header class="major special">
-				<h1>ebookOne</h1>
+				<h2>ebookOne</h2>
 			</header>
 		
 			<div class="table-wrapper">
@@ -71,18 +78,19 @@
 					</tr>	
 				</table>
 				
-				<!-- 장바구니 추가 버튼 -->
-				<a href="${pageContext.request.contextPath}/InsertCartController?ebookNo=${ebookOne.ebookNo}">
-					<!-- 버튼 활성화 -->
-					<c:if test="${loginClient!=null && ebookOne.ebookState.equals('판매중')}" >
-						<button type="button">장바구니추가</button>
-					</c:if>
-					<!-- 버튼 비활성화 -->
-					<c:if test="${loginClient==null || !ebookOne.ebookState.equals('판매중')}">
-						<button type="button" disabled="disabled">장바구니추가</button>
-					</c:if>
-				</a>
 			</div>
+			
+			<!-- 장바구니 추가 버튼 -->
+			<a href="${pageContext.request.contextPath}/InsertCartController?ebookNo=${ebookOne.ebookNo}">
+				<!-- 버튼 활성화 -->
+				<c:if test="${loginClient!=null && ebookOne.ebookState.equals('판매중')}" >
+					<button type="button">장바구니추가</button>
+				</c:if>
+				<!-- 버튼 비활성화 -->
+				<c:if test="${loginClient==null || !ebookOne.ebookState.equals('판매중')}">
+					<button type="button" disabled="disabled">장바구니추가</button>
+				</c:if>
+			</a>
 		</div>
 	</section>
 	

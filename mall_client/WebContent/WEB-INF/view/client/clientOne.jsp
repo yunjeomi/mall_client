@@ -25,9 +25,9 @@
 	</header>
 	
 	<section id="main" class="wrapper">
-		<div class="container">
+		<div class="container 75%">
 			<header class="major special">
-				<h1>clientOne</h1>
+				<h2>clientOne</h2>
 			</header>
 		
 			<div class="table-wrapper">
@@ -46,10 +46,10 @@
 					</tr>
 				</table>
 			</div>
+		<!-- DeleteClientController - CartDao.deleteCartAll(mail), ClientDao.deleteClient() - 로그아웃 되도록 session.invalidate() 세션초기화 - redirect:IndexController -->
+		<a href="${pageContext.request.contextPath}/DeleteClientController?clientMail=${clientOne.clientMail }" class="button small">회원탈퇴</a>
 		</div>
 	</section>
-	<!-- DeleteClientController - CartDao.deleteCartAll(mail), ClientDao.deleteClient() - 로그아웃 되도록 session.invalidate() 세션초기화 - redirect:IndexController -->
-	<a href="${pageContext.request.contextPath}/DeleteClientController?clientMail=${clientOne.clientMail }">회원탈퇴</a>
 	
 <!-- Footer -->
 	<footer id="footer">
